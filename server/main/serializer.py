@@ -6,18 +6,15 @@ from main.models import Receptor, Doctor, Profile, Patient, Appointment, Treatme
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    first_name = serializers.CharField()
-    last_name = serializers.CharField()
-    username = serializers.CharField()
-    password = serializers.CharField(
-        style={'input_type': 'password'}, write_only=True)
-
+    # first_name = serializers.CharField()
+    # last_name = serializers.CharField()
+    # username = serializers.CharField()
+    # password = serializers.CharField(
+    #     style={'input_type': 'password'})
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username', 'password']
-        extra_kwargs = {
-            'password': {'write_only': True},
-        }
+
 
 # ===========================================================================
 
@@ -48,11 +45,9 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class UpdateProfileFormSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(allow_blank=True)
-
     class Meta:
         model = Profile
-        fields = ["phone_number", "email", "sex", "birthday",
+        fields = ["phone_number", "sex", "birthday", "position",
                   "country", "street1", "street2", "city", "zipcode", "state"]
 # ===========================================================================
 

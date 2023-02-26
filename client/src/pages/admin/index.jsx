@@ -1,61 +1,162 @@
-import { Box } from "@mui/material";
-import React from "react";
-
+import { Box, Card, CardContent, CardHeader, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { useNavigate } from "react-router-dom";
+import { getAllUsersList } from "../../app/serviceApi";
 const Admin = () => {
+  const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
+  const [numDoctors, setNumDoctors] = useState(0);
+  const [numAdmins, setNumAdmins] = useState(0);
+  const [numReceptors, setNumReceptors] = useState(0);
+  const [numPatients, setNumPatients] = useState(0);
+  const [numAppointments, setNumAppointments] = useState(0);
+  const [numTreatments, setNumTreatments] = useState(0);
+  useEffect(() => {
+    getAllUsersList().then((data) => {
+      setUsers(data.users);
+      setNumAdmins(data.num_admin);
+      setNumDoctors(data.num_doctors);
+      setNumPatients(data.num_patients);
+      setNumReceptors(data.num_receptors);
+      setNumAppointments(data.num_treatments);
+      setNumTreatments(data.num_appointments);
+    });
+  }, []);
+  const columns = [
+    {
+      field: "first_name",
+      headerName: "Customer",
+      width: 200,
+      height: 200,
+      renderCell: ({ row: { first_name, last_name, image, user } }) => {
+        return (
+          <Box className="flex gap-4 items-center py-2 w-full h-full">
+            <Link to={`/user/${user}`}>
+              <img
+                className="h-[60px] w-[60px] pointer rounded-[50%]"
+                src={image}
+                alt={`${first_name}-${last_name}`}
+              />
+            </Link>
+            <Link to={`/user/${user}`}>
+              <Typography>
+                {first_name} {last_name}
+              </Typography>
+            </Link>
+          </Box>
+        );
+      },
+    },
+    {
+      field: "username",
+      headerName: "Username",
+      width: 100,
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      width: 200,
+    },
+    { field: "sex", headerName: "Sex", width: 100 },
+    { field: "birthday", headerName: "Birthday", width: 200 },
+  ];
   return (
-    <Box className="">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, deleniti ex
-      qui, rem iusto eaque nam a ab, dicta praesentium id architecto quia harum
-      eligendi nobis eos est. Libero harum nihil, eum ipsam totam iusto
-      nesciunt? Neque, officia in, provident aspernatur, doloribus molestias
-      numquam rem facilis reprehenderit reiciendis dicta voluptates. Dolorum
-      eveniet incidunt tempora. Odit in sed velit, atque saepe nemo placeat
-      laboriosam impedit ab expedita dolore fuga eos repellendus aspernatur sit
-      perspiciatis, nobis eveniet eum. Quam sed sint autem dolores laudantium
-      molestias labore vero tempore voluptates quod recusandae sequi ut, dolor
-      illum ducimus voluptatibus quos provident consequatur exercitationem
-      temporibus? Beatae nostrum iure fugit eius sapiente aut placeat obcaecati
-      pariatur maxime reprehenderit officiis exercitationem dolorem officia
-      quisquam, dolor facere repellat, architecto, nihil odit minima quo
-      temporibus! Nostrum ad assumenda voluptates ratione vero, adipisci animi
-      cupiditate harum consequuntur molestias maxime fugiat quae id voluptatibus
-      magnam fuga sed saepe optio enim ut. Tempore nam officiis corporis
-      possimus, sit eveniet magni molestias, quidem quam laborum deleniti
-      expedita, magnam odio officia corrupti unde nisi minima. Repudiandae
-      architecto in amet ipsa dolore cumque! Deserunt nesciunt voluptate sunt
-      autem saepe sapiente voluptatum libero nemo esse quaerat iure aut rerum,
-      debitis dicta unde accusamus sint possimus exercitationem veritatis animi
-      laudantium. Facere et facilis quibusdam eius qui. Voluptas, molestiae
-      expedita. Ab illum dicta quod possimus nihil cumque similique? Tempora sed
-      nostrum sequi perferendis vel, commodi libero earum repellat consequatur
-      quos minus at accusantium harum ipsam quas, impedit veritatis hic vero,
-      est molestiae molestias eaque? Explicabo cum itaque debitis porro alias
-      magnam sit molestiae, eaque fuga officia ea distinctio, maiores,
-      consectetur quam unde aliquam vero minima reiciendis dolorum commodi optio
-      temporibus! Quis optio et explicabo reiciendis voluptas iste nostrum
-      repellendus, sint earum eligendi unde ea similique, vitae laboriosam odio
-      sapiente cupiditate perferendis aliquid quaerat consequatur perspiciatis
-      adipisci officiis sit maiores. Nesciunt minus perferendis ducimus enim
-      accusantium animi cum dignissimos eum, vitae cupiditate sapiente placeat
-      nostrum, autem facere? Tempora, atque. Numquam dolorum ea pariatur commodi
-      qui consequatur aut illum sequi culpa perspiciatis recusandae, iste quae
-      praesentium. Ex commodi assumenda molestiae, aut ducimus vero cumque ad
-      non blanditiis veritatis eos reiciendis dignissimos error nobis natus sint
-      laudantium. Tenetur magni officia commodi delectus voluptates aliquid
-      repudiandae a aspernatur nemo ab vel, ut debitis culpa molestiae odit
-      quam, accusamus voluptatem nisi sapiente corporis. Alias ex sit dolorum
-      nostrum atque consequuntur in reiciendis, dignissimos vitae rerum! Nostrum
-      dolor sit temporibus aut adipisci dolore incidunt harum magnam itaque,
-      illum nam atque eum quo minima alias cumque asperiores dolorem autem
-      assumenda repudiandae excepturi! Architecto, inventore vitae, nulla eaque
-      cupiditate repudiandae animi repellendus ratione commodi qui ipsa id
-      adipisci nam rerum at corrupti, consequuntur ducimus eum aut sit. Odit,
-      distinctio! Quisquam distinctio doloremque quibusdam deleniti tenetur
-      soluta ipsam illum non iusto sed accusamus id modi quaerat temporibus
-      atque ullam at excepturi cum, officia eligendi dignissimos nulla placeat
-      itaque provident? Dolorem facere odio, eaque ratione tempora atque. Earum
-      quaerat eum aspernatur atque eligendi tempore, quod ullam magnam adipisci
-      natus nulla nobis porro ipsum est omnis voluptatem impedit ad!
+    <Box className="w-full flex flex-col gap-4">
+      <Box className="flex flex-col md:flex-row gap-4 w-full justify-center">
+        <Card className="w-full">
+          <CardHeader title="Total Users" />
+          <CardContent>
+            <Typography variant="h3" fontWeight="bold">
+              {numPatients + numDoctors + numReceptors + numAdmins}+
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card className="w-full">
+          <CardHeader title="Total Paitient" />
+          <CardContent>
+            <Typography variant="h3" fontWeight="bold">
+              {numPatients}+
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card className="w-full">
+          <CardHeader title="Total Doctor" />
+          <CardContent>
+            <Typography variant="h3" fontWeight="bold">
+              {numDoctors}+
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
+      <Box className="flex flex-col md:flex-row gap-4 w-full">
+        <Box className="flex flex-col gap-4  justify-center">
+          <Card>
+            <CardHeader title="Total Admins" />
+            <CardContent>
+              <Typography variant="h3" fontWeight="bold">
+                {numAdmins}+
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader title="Total Receptor" />
+            <CardContent>
+              <Typography variant="h3" fontWeight="bold">
+                {numReceptors}+
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader title="Total Treatment" />
+            <CardContent>
+              <Typography variant="h3" fontWeight="bold">
+                {numTreatments}+
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader title="Total Appointment" />
+            <CardContent>
+              <Typography variant="h3" fontWeight="bold">
+                {numAppointments}+
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
+        <Box className="w-full">
+          <Typography variant="h5" fontWeight={"bold"}>
+            Recent Users
+          </Typography>
+          <Box className={`w-full`}>
+            <Box
+              height="80vh"
+              className="h-[80vh] rounded-lg p-4 w-full"
+              sx={{
+                "& .MuiDataGrid-root": {
+                  border: "none",
+                },
+                "& .MuiDataGrid-cell": {
+                  borderBottom: "none",
+                },
+                "& .MuiDataGrid-columnHeaders": {
+                  borderBottom: "none",
+                },
+              }}
+            >
+              <DataGrid
+                density="comfortable"
+                rows={users}
+                columns={columns}
+                autoPageSize
+                checkboxSelection
+                components={{ Toolbar: GridToolbar }}
+              />
+            </Box>
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 };

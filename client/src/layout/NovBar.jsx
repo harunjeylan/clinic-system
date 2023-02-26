@@ -1,13 +1,13 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const NovBar = ({ saidBarToggler, authButton }) => {
   return (
-    <Box className="w-full flex justify-between items-center px-10 drop-shadow-md shadow">
+    <Box className="w-full flex justify-between items-center px-10 py-2 drop-shadow-md shadow">
       <Box className="flex justify-around items-center gap-4">
         {saidBarToggler}
-        <IconButton>LOGO</IconButton>
+        <Button>LOGO</Button>
       </Box>
       <Box className="flex justify-around items-center gap-4">
         <Box className="hidden md:flex justify-around items-center gap-4">

@@ -9,22 +9,7 @@ from main.models import Address, Profile
 
 # ===========================================================================
 @receiver(post_save, sender=User)
-def create_address(sender, instance, created, **kwargs):
-    if created:
-        Address.objects.create(user=instance)
-
-    else:
-        try:
-            instance.address.save()
-        except:
-            Address.objects.create(user=instance)
-
-
-# ===========================================================================
-
-# ===========================================================================
-@receiver(post_save, sender=User)
-def create_employ(sender, instance, created, **kwargs):
+def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 

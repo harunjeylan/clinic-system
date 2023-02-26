@@ -1,19 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import {
-  Box,
-  Alert,
-  TextField,
-  Button,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from "@mui/material";
-import { Dayjs } from "dayjs";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import React, { useState, useRef } from "react";
+import { Box, Alert, TextField, Button } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -29,10 +15,6 @@ const RegisterForm = () => {
   const from = location.state?.from?.pathname || "/";
   const [errorMessage, setErrorMessage] = useState("");
   const accessToken = useSelector(selectCurrentToken);
-
-  // useEffect(() => {
-  //   // userRef.current.focus();
-  // }, []);
 
   const checkoutSchema = Yup.object().shape({
     first_name: Yup.string().required("required"),
@@ -69,8 +51,6 @@ const RegisterForm = () => {
       first_name: "",
       last_name: "",
       username: "",
-      // sex: "",
-      // birthday: new Date(),
       password: "",
       password2: "",
     },

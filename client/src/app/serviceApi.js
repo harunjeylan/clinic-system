@@ -7,13 +7,21 @@ export const getDoctorDetails = (doctorId) => {
   return baseQuery(`doctor/${doctorId}`);
 };
 
+export const getEmployeesList = () => {
+  return baseQuery(`employ/`);
+};
+export const getReceptorsList = () => {
+  return baseQuery(`receptor/`);
+};
 export const getDoctorsList = () => {
   return baseQuery(`doctor/`);
 };
 export const getPatientsList = () => {
   return baseQuery(`patient/`);
 };
-
+export const getAllUsersList = () => {
+  return baseQuery(`users/`);
+};
 export const addTreatment = (data) => {
   return baseMount(`treatment/add/`, data);
 };

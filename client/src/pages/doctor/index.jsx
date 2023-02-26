@@ -34,7 +34,7 @@ const Doctor = () => {
     });
   };
   return (
-    <Box className="">
+    <Box className="w-full h-fit">
       <Box className="my-4 py-4 flex justify-between items-center">
         <Typography>DOCTOR DASHBOARD</Typography>
         <ButtonGroup>
@@ -42,26 +42,34 @@ const Doctor = () => {
           <Button onClick={() => setIsGridMode(false)}>List</Button>
         </ButtonGroup>
       </Box>
-      <Box
-        className={`grid grid-cols-1 ${
-          isGridMode && "md:grid-cols-2 lg:grid-cols-3"
-        } gap-4`}
-      >
-        {pendingTreatment.map((treatment) => (
-          <Card key={treatment.id}>
-            <CardActionArea onClick={() => handleOpen(treatment)}>
-              <CardHeader
-                title={`${treatment.patient.first_name} ${treatment.patient.last_name}`}
-              />
-            </CardActionArea>
-            <CardContent>
-              <Typography>username: {treatment.patient.username}</Typography>
-              <Typography>sex: {treatment.patient.sex}</Typography>
-              <Typography>{treatment.created}</Typography>
-            </CardContent>
-          </Card>
-        ))}
-      </Box>
+      {pendingTreatment.length ? (
+        <Box
+          className={`grid grid-cols-1 ${
+            isGridMode && "md:grid-cols-2 lg:grid-cols-3"
+          } gap-4`}
+        >
+          {pendingTreatment.map((treatment) => (
+            <Card key={treatment.id}>
+              <CardActionArea onClick={() => handleOpen(treatment)}>
+                <CardHeader
+                  title={`${treatment.patient.first_name} ${treatment.patient.last_name}`}
+                />
+              </CardActionArea>
+              <CardContent>
+                <Typography>username: {treatment.patient.username}</Typography>
+                <Typography>sex: {treatment.patient.sex}</Typography>
+                <Typography>{treatment.created}</Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
+      ) : (
+        <Box className="flex justify-center items-center w-full h-full py-10">
+          <Typography variant="h5" fontWeight={"bold"}>
+            No Pending Appointment
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 };

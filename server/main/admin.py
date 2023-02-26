@@ -15,6 +15,7 @@ class ProfileAdmin(admin.ModelAdmin):
                     'street2',
                     'city',
                     'zipcode',
+                     "position",
                     'state',)
     list_filter = ('user',)
 

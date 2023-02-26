@@ -34,7 +34,10 @@ const Layout = ({ children }) => {
         saidBarToggler={
           accessToken &&
           (user?.is_doctor || user?.is_superuser) && (
-            <IconButton onClick={() => setIsOpen((prev) => !prev)}>
+            <IconButton
+              className="h-10 w-10"
+              onClick={() => setIsOpen((prev) => !prev)}
+            >
               =
             </IconButton>
           )
@@ -91,9 +94,11 @@ const Layout = ({ children }) => {
       </Model>
       <Box className="flex justify-between ">
         {accessToken && (user?.is_doctor || user?.is_superuser) && (
-          <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
+          <Box className="bg-slate-200 min-h-screen">
+            <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
+          </Box>
         )}
-        <Box className={`w-full mx-4 md:max-w-[80%] md:mx-auto`}>
+        <Box className={`w-full mx-4 md:max-w-[80%] md:mx-auto p-4`}>
           {children}
         </Box>
       </Box>

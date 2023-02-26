@@ -19,13 +19,18 @@ const DoctorMenu = () => {
         <ListItemButton onClick={() => navigate("/")}>Home</ListItemButton>
       </ListItem>
       <ListItem>
-        <ListItemButton onClick={() => navigate("/doctor")}>
-          Appointment
+        <ListItemButton onClick={() => navigate("/patient/list")}>
+          Patients lest
         </ListItemButton>
       </ListItem>
       <ListItem>
-        <ListItemButton onClick={() => navigate("/patient/list")}>
-          Patients lest
+        <ListItemButton onClick={() => navigate("/service/treatment/list")}>
+          Treatment lest
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton onClick={() => navigate("/service/appointment/list")}>
+          Appointment lest
         </ListItemButton>
       </ListItem>
     </List>
@@ -63,6 +68,16 @@ const AdminMenu = () => {
           Patients lest
         </ListItemButton>
       </ListItem>
+      <ListItem>
+        <ListItemButton onClick={() => navigate("/service/treatment/list")}>
+          Treatment lest
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton onClick={() => navigate("/service/appointment/list")}>
+          Appointment lest
+        </ListItemButton>
+      </ListItem>
     </List>
   );
 };
@@ -72,18 +87,21 @@ const SideBar = ({ isOpen, setIsOpen }) => {
     <Box
       className={`fixed md:relative top-0 left-0 bottom-0 z-10
                  ${
-                   isOpen ? "w-full md:w-[260px]" : "w-0"
+                   isOpen ? "w-full md:w-[200px]" : "w-0"
                  } md:bg-transparent  duration-75 ease-in-out  bg-black/60 overflow-x-hidden`}
     >
-      <Box className="h-fit w-[260px] md:w-full duration-75 ease-in-out  bg-white min-h-full">
+      <Box className="h-fit w-[200px] md:w-full duration-75 ease-in-out  bg-slate-200 md:bg-transparent min-h-full">
         <Box className="flex justify-end md:hidden">
           <IconButton onClick={() => setIsOpen(false)}>X</IconButton>
         </Box>
-        <Box className="flex flex-col gap-4 justify-center items-center text-center">
-          <Box className=" bg-slate-400 rounded-full w-[100px] h-[100px]">
-            image
-          </Box>
-          <Typography>Doctor name</Typography>
+        <Box className="flex flex-col gap-4 justify-center items-center text-center bg-slate-300">
+          <Typography fontWeight={"bold"} variant="subtitle1" className="mt-10">
+            {user.first_name} {user.last_name}
+          </Typography>
+          <Typography fontWeight={"bold"} variant="subtitle2">
+            {user.username}
+          </Typography>
+          <Typography>{user.profession}</Typography>
         </Box>
         {user?.is_doctor && <DoctorMenu />}
         {user?.is_superuser && <AdminMenu />}

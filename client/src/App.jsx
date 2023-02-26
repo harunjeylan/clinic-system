@@ -39,6 +39,11 @@ import ReceptorsList from "./pages/receptor/ReceptorsList";
 import ReceptorDetails from "./pages/receptor/ReceptorDetails";
 
 import Home from "./pages";
+// import UpdateProfile from "./pages/admin/updateProfile";
+import UpdateUser from "./pages/admin/UpdateUser";
+import UpdatePatientInfo from "./pages/patient/UpdatePatientInfo";
+import TreatmentList from "./pages/service/TreatmentList";
+import AppointmentList from "./pages/service/AppointmentList";
 
 function App() {
   const accessToken = useSelector(selectCurrentToken);
@@ -79,8 +84,13 @@ function App() {
         <Route element={<HomeRoutes />} path="/">
           <Route index element={<Home />} />
         </Route>
+        <Route element={<PrivateRoutes />} path="/service">
+          <Route path="appointment/list" element={<AppointmentList />} />
+          <Route path="treatment/list" element={<TreatmentList />} />
+        </Route>
         <Route element={<PrivateRoutes />} path="/admin">
           <Route index element={<Admin />} />
+          <Route path="update-user/:userId" element={<UpdateUser />} />
         </Route>
         <Route element={<PrivateRoutes />} path="employ">
           <Route index element={<Employees />} />
@@ -95,6 +105,7 @@ function App() {
           <Route index element={<Patient />} />
           <Route path="list" element={<PatientsList />} />
           <Route path=":patientId" element={<PatientDetails />} />
+          <Route path=":patientId/update" element={<UpdatePatientInfo />} />
         </Route>
         <Route element={<PrivateRoutes />} path="/receptor">
           <Route index element={<Receptor />} />

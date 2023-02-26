@@ -43,6 +43,13 @@ class Profile(models.Model):
     ]
     sex = models.CharField(max_length=20, null=True,
                            blank=True, choices=SEX_CHOSE)
+    POSITION_CHOSE = [
+        ("doctor", "Doctor"),
+        ("receptor", "Receptor"),
+        ("patient", "Patient"),
+    ]
+    position = models.CharField(max_length=20, null=True, default="patient",
+                                blank=True, choices=POSITION_CHOSE)
     birthday = models.DateField(null=True, blank=True)
     country = models.CharField(max_length=50, null=True, blank=True)
     street1 = models.CharField(max_length=100, null=True, blank=True)

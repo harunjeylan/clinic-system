@@ -101,19 +101,18 @@ const Receptor = () => {
         ) : (
           <Box>
             <Box className="w-full flex justify-center items-center">
-              <Box className=" bg-slate-400 rounded-full w-[140px] h-[140px]">
-                image
-              </Box>
+              <Typography variant="h5" fontWeight={"bold"}>
+                {userDetail.first_name} {userDetail.last_name}
+              </Typography>
             </Box>
-            <Box className="my-6 p-4">
+            <Box className="mb-6 p-4">
               <Divider />
               <Box className="flex flex-col md:flex-row gap-10">
                 <Box>
                   <Typography variant="h6" fontWeight={"bold"} className="py-2">
                     Personal Information
                   </Typography>
-                  <Typography>First Name: {userDetail.first_name}</Typography>
-                  <Typography>Last Name: {userDetail.last_name}</Typography>
+
                   <Typography>Username: {userDetail.username}</Typography>
                   <Typography>Sex: {userDetail.birthday}</Typography>
                   <Typography>
@@ -165,30 +164,38 @@ const Receptor = () => {
           <Button onClick={() => setIsGridMode(false)}>List</Button>
         </ButtonGroup>
       </Box>
-      <Box
-        className={`grid grid-cols-1 w-full ${
-          isGridMode && "md:grid-cols-2 lg:grid-cols-3"
-        } gap-4`}
-      >
-        {searchedUsers.map((user) => (
-          <Card key={user.id}>
-            <CardActionArea onClick={() => showHandle(user.id)}>
-              <CardHeader title={`${user.first_name} ${user.last_name}`} />
-            </CardActionArea>
-            <CardContent>
-              <Typography>
-                Username:<strong> {userDetail.username}</strong>
-              </Typography>
-              <Typography>
-                Sex:<strong> {userDetail.birthday}</strong>
-              </Typography>
-              <Typography>
-                Phone Number: <strong>{userDetail.phone_number}</strong>
-              </Typography>
-            </CardContent>
-          </Card>
-        ))}
-      </Box>
+      {searchedUsers.length ? (
+        <Box
+          className={`grid grid-cols-1 w-full ${
+            isGridMode && "md:grid-cols-2 lg:grid-cols-3"
+          } gap-4`}
+        >
+          {searchedUsers.map((user) => (
+            <Card key={user.id}>
+              <CardActionArea onClick={() => showHandle(user.id)}>
+                <CardHeader title={`${user.first_name} ${user.last_name}`} />
+              </CardActionArea>
+              <CardContent>
+                <Typography>
+                  Username:<strong> {userDetail.username}</strong>
+                </Typography>
+                <Typography>
+                  Sex:<strong> {userDetail.birthday}</strong>
+                </Typography>
+                <Typography>
+                  Phone Number: <strong>{userDetail.phone_number}</strong>
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
+      ) : (
+        <Box className="flex justify-center items-center w-full h-full py-10">
+          <Typography variant="h5" fontWeight={"bold"}>
+            Search for...
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 };

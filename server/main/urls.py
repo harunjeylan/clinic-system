@@ -12,13 +12,23 @@ from main import views
 urlpatterns = [
     path("", views.getRoutes, name="get_routes"),
     path("user/profile/", views.getUserData, name="profile"),
+    path("user/profile/<pk>/", views.getUserDetails, name="profile-details"),
+    path("user/profile/update", views.updateProfile, name="update-profile"),
     path("user/register/", views.userRegister, name="register"),
 
     path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('search-patients/', views.searchPatients, name="searchPatients"),
+
+
+    path('employ/', views.getEmployees, name="get_employees"),
     path('doctor/', views.getDoctors, name="get_doctors"),
+    path('receptor/', views.getReceptors, name="get_receptors"),
     path('patient/', views.getPatients, name="get_patients"),
+    path('users/', views.getAllUsers, name="get_users"),
+
+
+
     path('treatment/add/', views.addTreatment, name="add_treatment"),
     path('treatment/treated/', views.setPatientTreated, name="treated_treatment"),
 

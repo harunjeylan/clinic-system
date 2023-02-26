@@ -66,7 +66,7 @@ export const baseMount = async (path, bodyData = {}) => {
     body: JSON.stringify(bodyData),
   });
   let data = await response.json();
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status === 200 || response.status === 201) {
     return data;
   } else if (response.status === 401 && refresh) {
     refreshAccessToken();
